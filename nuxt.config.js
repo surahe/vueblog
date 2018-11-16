@@ -27,12 +27,17 @@ module.exports = {
   ** Global CSS
   */
   css: [
+    'element-ui/lib/theme-chalk/index.css',
+    '~assets/css/main.scss'
   ],
 
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/plugins/components.js',
+    '~/plugins/element.js',
+    '~/plugins/axios.js'
   ],
 
   /*
@@ -47,6 +52,9 @@ module.exports = {
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+    timeout: 20000,
+    maxContentLength: 2000,
+    headers: {}
   },
 
   /*
@@ -66,6 +74,13 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
-    }
-  }
+    },
+    postcss: [
+      require('autoprefixer')({
+        browsers: ['last 3 versions'],
+        remove: false
+      })
+    ]
+  },
+  vendor:['element-ui']
 }

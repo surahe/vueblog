@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <section class="content">
     <div>
       <logo/>
       <h1 class="title">
@@ -34,8 +34,8 @@ export default {
 
 <style>
 
-.container {
-  min-height: 100vh;
+.content {
+  /* min-height: 100vh; */
   display: flex;
   justify-content: center;
   align-items: center;

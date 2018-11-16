@@ -13,21 +13,28 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.0.0",
+    "@nuxtjs/axios": "^5.1.0",
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "cross-env": "^5.2.0",
+    "element-ui": "^2.4.8",
     "express": "^4.16.3",
     "log4js": "^3.0.6",
+    "moment": "^2.22.2",
     "mysql2": "^1.6.1",
-    "nuxt": "^2.0.0",
+    "normalize.css": "^8.0.0",
+    "nuxt": "^2.2.0",
     "sequelize": "^4.39.0",
     "superstruct": "^0.6.0"
   },
   "devDependencies": {
-    "nodemon": "^1.11.0",
     "babel-eslint": "^8.2.1",
+    "babel-polyfill": "^6.26.0",
     "eslint": "^5.0.1",
     "eslint-loader": "^2.0.0",
-    "eslint-plugin-vue": "^4.0.0"
+    "eslint-plugin-vue": "^4.0.0",
+    "node-sass": "^4.9.3",
+    "nodemon": "^1.11.0",
+    "sass-loader": "^7.1.0"
   }
 }
