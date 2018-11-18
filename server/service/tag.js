@@ -1,6 +1,6 @@
 'use strict'
 
-var Tag = require('../models').Tag
+var Tag = require('../models').tag
 
 const tagServer = {
   create: async(tagInfo) => {

@@ -1,7 +1,9 @@
 'use strict';
 
+const {formatTime} = require('../utils/tools')
+
 module.exports = (sequelize, DataTypes) => {
-  let Article = sequelize.define('Article', {
+  let Article = sequelize.define('article', {
     title: {
       type: DataTypes.STRING,
       allowNull: false
@@ -17,10 +19,28 @@ module.exports = (sequelize, DataTypes) => {
     views: {
       type: DataTypes.INTEGER,
       defaultValue: 0
+    },
+    photo: {
+      type: DataTypes.STRING
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      get() {
+        return formatTime(this.getDataValue('createdAt'), 'YYYY-MM-DD HH:mm:ss')
+      }
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      get() {
+        return formatTime(this.getDataValue('updatedAt'), 'YYYY-MM-DD HH:mm:ss')
+      }
     }
   })
   Article.associate = (models) => {
-    models.Article.belongsTo(models.User, {
+    models.article.belongsTo(models.user, {
+      onDelete: 'CASCADE'
+    })
+    models.article.belongsTo(models.category, {
       onDelete: 'CASCADE'
     })
   }

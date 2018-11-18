@@ -1,9 +1,9 @@
 'use strict';
 
-const {formatTime} = require('../utils/tools')
+var moment = require('moment')
 
 module.exports = (sequelize, DataTypes) => {
-  let Tag = sequelize.define('tag', {
+  let Category = sequelize.define('category', {
     name: {
       type: DataTypes.STRING,
       allowNull: false
@@ -11,15 +11,15 @@ module.exports = (sequelize, DataTypes) => {
     createdAt: {
       type: DataTypes.DATE,
       get() {
-        return formatTime(this.getDataValue('createdAt'), 'YYYY-MM-DD HH:mm:ss')
+        return moment(this.getDataValue('createdAt')).format('YYYY-MM-DD HH:mm:ss');
       }
     },
     updatedAt: {
       type: DataTypes.DATE,
       get() {
-        return formatTime(this.getDataValue('updatedAt'), 'YYYY-MM-DD HH:mm:ss')
+        return moment(this.getDataValue('updatedAt')).format('YYYY-MM-DD HH:mm:ss');
       }
     }
   })
-  return Tag
+  return Category
 }

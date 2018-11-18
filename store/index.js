@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 
 import tag from './tag';
+import category from './category';
 
 Vue.use(Vuex)
 
@@ -12,7 +13,8 @@ const store = () => new Vuex.Store({
   mutations: {
   },
   modules: {
-    tag
+    tag,
+    category
   }
 })
 

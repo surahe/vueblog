@@ -1,16 +1,16 @@
 <template>
   <section>
     <div class="operation">
-      <el-button type="primary" @click="dialogVisible = true">添加标签</el-button>
+      <el-button type="primary" @click="dialogVisible = true">添加分类</el-button>
     </div>
-    <el-table :data="$store.state.tag.tags" border style="width: 100%">
-      <el-table-column prop="name" label="标签名称"/>
+    <el-table :data="$store.state.category.categories" border style="width: 100%">
+      <el-table-column prop="name" label="分类名称"/>
       <el-table-column prop="createdAt" label="创建时间" width="200"/>
       <el-table-column label="操作" width="200">
         <template slot-scope="scope">
           <div class="operation-col">
             <icon-base :icon-name="'修改'" @click="handleClick(scope.row)"><icon-pencil/></icon-base>
-            <icon-base :icon-name="'删除'" @click="deleteTag(scope.row)"><icon-bin/></icon-base>
+            <icon-base :icon-name="'删除'" @click="deleteCategory(scope.row)"><icon-bin/></icon-base>
           </div>
         </template>
       </el-table-column>
@@ -18,12 +18,12 @@
 
     <el-dialog
       :visible.sync="dialogVisible"
-      title="创建标签"
+      title="创建分类"
       width="30%">
-      <el-input v-model="tagName" placeholder="请输入内容" maxlength="20" clearable />
+      <el-input v-model="categoryName" placeholder="请输入内容" maxlength="20" clearable />
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="addTag">确 定</el-button>
+        <el-button type="primary" @click="addCategory">确 定</el-button>
       </span>
     </el-dialog>
   </section>
@@ -41,32 +41,32 @@
     data () {
       return {
         dialogVisible: false,
-        tagName: '',
+        categoryName: '',
       }
     },
     mounted () {
-      this.$store.dispatch('tag/getAllTags')
+      this.$store.dispatch('category/getAllCategories')
     },
     methods: {
       handleClick(row) {
         console.log(row.id);
       },
-      addTag () {
-        this.$store.dispatch('tag/addTag', {name: this.tagName})
+      addCategory () {
+        this.$store.dispatch('category/addCategory', {name: this.categoryName})
           .then((data) => {
             this.$message({
               message: data.data.message,
               type: 'success'
             })
-            this.tagName = ''
+            this.categoryName = ''
             this.dialogVisible = false
           })
           .catch((err) => {
             console.log(err)
           })
       },
-      deleteTag(row) {
-        this.$store.dispatch('tag/deleteTag', {id: row.id})
+      deleteCategory(row) {
+        this.$store.dispatch('category/deleteCategory', {id: row.id})
           .then((data) => {
             this.$message({
               message: data.data.message,

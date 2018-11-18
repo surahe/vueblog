@@ -3,11 +3,7 @@
 const {formatTime} = require('../utils/tools')
 
 module.exports = (sequelize, DataTypes) => {
-  let Tag = sequelize.define('tag', {
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
+  let CommentArticle = sequelize.define('comment_article', {
     createdAt: {
       type: DataTypes.DATE,
       get() {
@@ -21,5 +17,13 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   })
-  return Tag
+  CommentArticle.associate = (models) => {
+    models.comment_article.belongsTo(models.comment, {
+      onDelete: 'CASCADE'
+    })
+    models.comment_article.belongsTo(models.article, {
+      onDelete: 'CASCADE'
+    })
+  }
+  return CommentArticle
 }

@@ -3,10 +3,10 @@
 const {formatTime} = require('../utils/tools')
 
 module.exports = (sequelize, DataTypes) => {
-  let Tag = sequelize.define('tag', {
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false
+  let Dig = sequelize.define('dig', {
+    status: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -21,5 +21,13 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   })
-  return Tag
+  Dig.associate = (models) => {
+    models.dig.belongsTo(models.user, {
+      onDelete: 'CASCADE'
+    })
+    models.dig.belongsTo(models.article, {
+      onDelete: 'CASCADE'
+    })
+  }
+  return Dig
 }
