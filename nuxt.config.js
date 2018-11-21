@@ -27,7 +27,6 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    'element-ui/lib/theme-chalk/index.css',
     '~assets/css/main.scss'
   ],
 
@@ -36,7 +35,7 @@ module.exports = {
   */
   plugins: [
     '~/plugins/components.js',
-    '~/plugins/element.js',
+    {src: '~/plugins/element.js', ssr: true},
     '~/plugins/axios.js'
   ],
 
@@ -80,7 +79,14 @@ module.exports = {
         browsers: ['last 3 versions'],
         remove: false
       })
-    ]
-  },
-  vendor:['element-ui']
+    ],
+    babel: {
+      plugins: [
+        ['component', {
+          libraryName: 'element-ui',
+          styleLibraryName: 'theme-chalk'
+        }]
+      ]
+    }
+  }
 }

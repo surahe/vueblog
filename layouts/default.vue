@@ -5,14 +5,14 @@
       <div class="header-inner">
         <a class="header-logo" href="/">VueBlog</a>
         <ul class="header-nav">
-          <li class="header-nav-item nav-search">
+          <!-- <li class="header-nav-item nav-search">
             <form class="search-bar">
-              <el-input v-model="searchValue" maxlength="30" placeholder="请输入内容" />
+              <input v-model="searchValue" maxlength="30" placeholder="请输入内容">
               <button aria-label="搜索" type="button" class="search-bar-icon">
                 <icon-base :icon-color="'#8590a6'" :icon-name="'搜索'"><icon-search /></icon-base>
               </button>
             </form>
-          </li>
+          </li> -->
           <li class="header-nav-item">
             <!-- admin navs -->
             <nav v-if="/^(admin)/.test($route.name)" class="nav-list">

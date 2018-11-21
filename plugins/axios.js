@@ -1,6 +1,3 @@
-import { Message } from 'element-ui'
-
-
 export default function ({ $axios, redirect }) {
   // 请求成功
   $axios.onRequest(config  => {
@@ -36,7 +33,7 @@ export default function ({ $axios, redirect }) {
 
   // 响应失败
   $axios.onResponseError(error => {
-    Message.error(error.message)
+    alert(error.message)
     return Promise.reject(error)
   })
 }
