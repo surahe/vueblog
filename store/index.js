@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 
+import user from './user';
 import tag from './tag';
 import category from './category';
 
@@ -13,6 +14,7 @@ const store = () => new Vuex.Store({
   mutations: {
   },
   modules: {
+    user,
     tag,
     category
   }
