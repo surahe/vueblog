@@ -5,9 +5,15 @@ const express = require('express')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 const bodyParser = require('body-parser')
+const session = require('express-session')
+const RedisStore = require('connect-redis')(session)
+const cookieParser = require('cookie-parser')
 
 const models = require('./models/index')
 const router = require('./routes')
+const passport = require('./utils/passport')
+const redis = require('./utils/redis')
+
 
 const app = express()
 const host = serverConfig.host || '127.0.0.1'
@@ -27,6 +33,19 @@ models.sequelize.sync({force: false}).then(function() {
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
+
+app.use(cookieParser('sessiontest'))
+app.use(session({
+  secret: serverConfig.session_secret,
+  store: new RedisStore({
+    client: redis
+  }),
+  resave: false,
+  saveUninitialized: true,
+  cookie : { httpOnly: true, maxAge: 2419200000 }
+}))
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use('/api', router)
 

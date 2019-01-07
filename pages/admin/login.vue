@@ -17,7 +17,16 @@ export default {
   },
   methods: {
     login () {
-
+      this.$store.dispatch('user/signin', {
+        username: this.username,
+        password: this.password
+      })
+      .then(({status, data}) => {
+        console.log(data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     }
   },
 }

@@ -7,8 +7,17 @@ const mutations = {
 }
 
 const actions = {
-  async login ({commit, state, getters}, params) {
-    const { data } = await this.$axios.post('/api/user/login', params)
+  async register ({commit, state, getters}, params) {
+    const { data } = await this.$axios.post('/api/user/register', params)
+    return data
+  },
+  async verify ({commit, state, getters}, params) {
+    const { data } = await this.$axios.post('/api/user/verify', params)
+    return data
+  },
+  async signin ({commit, state, getters}, params) {
+    const { data } = await this.$axios.post('/api/user/signin', params)
+    return data
   }
 }
 

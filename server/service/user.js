@@ -8,15 +8,14 @@ const userServer = {
       username: userInfo.username,
       password: userInfo.password,
       nickname: userInfo.nickname,
+      email: userInfo.email,
       role: userInfo.role
     })
     return user
   },
-  getUserById: async (id) => {
+  findOne: async (condition) => {
     const user = await User.findOne({
-      where: {
-        id: id
-      }
+      where: condition
     })
     return user
   }

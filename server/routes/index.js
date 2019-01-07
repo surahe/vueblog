@@ -8,8 +8,9 @@ const category = require('../controllers/category')
 const router = express.Router()
 
 router
-	.get('/user/getUserInfo/', user.getUserById)
-	.post('/user/createUser', user.registerUser)
+	.post('/user/register', user.register)
+	.post('/user/verify', user.verify)
+	.post('/user/signin', user.signin)
 
 router
 	.post('/tag/createTag', tag.createTag)
