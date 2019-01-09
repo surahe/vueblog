@@ -147,7 +147,7 @@ const service = {
     Redis.hmset(`nodemail:${ko.user}`, 'code', ko.code, 'expire', ko.expire, 'email', ko.email)
     await transporter.sendMail(mailOptions, (error, info) => { 
       if (error) {
-        return console.log('error')
+        return console.log(error)
       } else {
         Redis.hmset(`nodemail:${ko.user}`, 'code', ko.code, 'expire', ko.expire, 'email', ko.email )
       }

@@ -14,7 +14,7 @@ export default function ({ $axios, redirect }) {
   $axios.onResponse(response => {
     let resData = response.data
     let { errorCode } = resData
-  
+
     switch (errorCode) {
       case 0: // 如果业务成功，直接进成功回调
         return response

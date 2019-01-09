@@ -115,15 +115,11 @@ export default {
             email: self.form.email,
             nickname: self.form.nickname,
             code: self.form.code
-          }).then(({status, data}) => {
-            if (status === 200) {
-              if (data && data.errorCode === 0) {
-                window.location.href = 'admin/login'
-              } else {
-                alert(data.message)
-              }
+          }).then((data) => {
+            if (data && data.errorCode === 0) {
+              window.location.href = '/admin/login'
             } else {
-              alert('注册失败')
+              alert(data.message)
             }
           }).catch(err => {
             console.log(err)
