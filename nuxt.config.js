@@ -35,7 +35,7 @@ module.exports = {
   */
   plugins: [
     '~/plugins/components.js',
-    {src: '~/plugins/element.js', ssr: true},
+    {src: '~/plugins/element.js', ssr: false },
     '~/plugins/axios.js'
   ],
 

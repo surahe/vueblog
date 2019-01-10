@@ -11,7 +11,6 @@ const cookieParser = require('cookie-parser')
 
 const models = require('./models/index')
 const router = require('./routes')
-const passport = require('./utils/passport')
 const redis = require('./utils/redis')
 
 
@@ -34,7 +33,7 @@ models.sequelize.sync({force: false}).then(function() {
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
-app.use(cookieParser('sessiontest'))
+app.use(cookieParser(serverConfig.cookie_name))
 app.use(session({
   secret: serverConfig.session_secret,
   store: new RedisStore({
@@ -44,8 +43,6 @@ app.use(session({
   saveUninitialized: true,
   cookie : { httpOnly: true, maxAge: 2419200000 }
 }))
-app.use(passport.initialize())
-app.use(passport.session())
 
 app.use('/api', router)
 

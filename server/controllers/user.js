@@ -1,10 +1,11 @@
 'use strict';
 
-const User = require('../service/user')
 const superstruct = require('superstruct')
 const nodeMailer = require('nodemailer')
+const jwt = require('jsonwebtoken')
+
+const User = require('../service/user')
 const Redis = require('../utils/redis')
-const Passowrd = require('../utils/passport')
 const config = require('../config')
 const tools = require('../utils/tools')
 const errorCode = require('../config/errorCode')
@@ -85,32 +86,38 @@ const service = {
     }
   },
   signin: async (req, res, next) => {
-    return Passowrd.authenticate('local', function (err, user, info, status) {
-      if (err) {
+    const {username, password} = req.body
+    const format = superstruct.struct({
+      username: 'string',
+      password: 'string'
+    })
+    try {
+      format(req.body)
+      let user = await User.findOne({username: username, password: password})
+      if (user) {
+        let secret = config.jwt.secret
+        let token = jwt.sign({
+          username: user.username,
+          userId: user.id
+        }, secret, { expiresIn: '2h' })
+
+        res.cookie('token', token)
         res.json(resData(
-          errorCode.error,
-          {message: err}
+          errorCode.success,
+          {message: '登录成功',token: token}
         ))
       } else {
-        if (user) {
-          return req.login(user, function (err) {
-            if (err) {
-                return next(err)
-            }
-            console.log(req.session)
-            res.json(resData(
-              errorCode.success,
-              {message: '登录成功', user}
-            ))
-          })
-        } else {
-          res.json(resData(
-            errorCode.error,
-            { message: info}
-          ))
-        }
+        res.json(resData(
+          errorCode.error,
+          {message: '登录失败'}
+        ))
       }
-    })(req, res, next)
+    } catch (err) {
+      res.json(resData(
+        errorCode.invalid_parameter,
+        {message: err.message}
+      ))
+    }
   },
   verify: async (req, res, next) => {
     let username = req.body.username

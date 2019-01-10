@@ -26,5 +26,8 @@ module.exports = {
   },
   session_secret: 'sura_blog_secret',
   cookie_name: 'sura_blog',
-  log_dir: path.join(__dirname, 'logs')
+  log_dir: path.join(__dirname, 'logs'),
+  jwt: {
+    secret: 'vueblog'
+  }
 }
