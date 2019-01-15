@@ -1,4 +1,10 @@
+const cookie = require('js-cookie')
+
 export default function ({ $axios, redirect }) {
+  let token = cookie.get('token')
+  if (token) {
+    $axios.setToken(token)
+  }
   // 请求成功
   $axios.onRequest(config  => {
     return config
@@ -16,16 +22,10 @@ export default function ({ $axios, redirect }) {
     let { errorCode } = resData
 
     switch (errorCode) {
-      case 0: // 如果业务成功，直接进成功回调
+      case 0: // 接口访问成功，进入回调
         return response
-      case 1111:
-        // 如果业务失败，根据不同 code 做不同处理
-        // 比如最常见的授权过期跳登录
-        // 特定弹窗
-        // 跳转特定页面等
-  
-        location.href = 'xxx' // 这里的路径也可以放到全局配置里
-        return
+      // case 1: // 可预期的错误，进入回调
+      //   return response
       default:
         return Promise.reject(resData)
     }
@@ -33,7 +33,7 @@ export default function ({ $axios, redirect }) {
 
   // 响应失败
   $axios.onResponseError(error => {
-    alert(error.message)
+    alert(error.response ? error.response.data.message : error.message)
     return Promise.reject(error)
   })
 }

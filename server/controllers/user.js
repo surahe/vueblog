@@ -109,7 +109,7 @@ const service = {
       } else {
         res.json(resData(
           errorCode.error,
-          {message: '登录失败'}
+          {message: '账号或密码错误'}
         ))
       }
     } catch (err) {

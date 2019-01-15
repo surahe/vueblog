@@ -4,6 +4,7 @@ const express = require('express')
 const user = require('../controllers/user')
 const tag = require('../controllers/tag')
 const category = require('../controllers/category')
+const checkToken = require('../middleware/checkToken')
 
 const router = express.Router()
 
@@ -13,10 +14,10 @@ router
 	.post('/user/signin', user.signin)
 
 router
-	.post('/tag/createTag', tag.createTag)
+	.post('/tag/createTag',checkToken, tag.createTag)
 	.get('/tag/findAllTags', tag.findAllTag)
 	.get('/tag/findTag', tag.findTag)
-	.post('/tag/destroyTag', tag.destroyTag)
+	.post('/tag/destroyTag',checkToken, tag.destroyTag)
 
 router
 	.post('/category/create', category.create)
