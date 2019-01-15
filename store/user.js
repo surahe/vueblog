@@ -7,17 +7,32 @@ const mutations = {
 }
 
 const actions = {
-  async register ({commit, state, getters}, params) {
-    const { data } = await this.$axios.post('/api/user/register', params)
-    return data
+  register ({commit, state, getters}, params) {
+    return this.$axios.post('/api/user/register', params)
+    .then(response => {
+      return Promise.resolve(response)
+    })
+    .catch(error => {
+      return Promise.reject(error)
+    })
   },
-  async verify ({commit, state, getters}, params) {
-    const { data } = await this.$axios.post('/api/user/verify', params)
-    return data
+  verify ({commit, state, getters}, params) {
+    return this.$axios.post('/api/user/verify', params)
+    .then(response => {
+      return Promise.resolve(response)
+    })
+    .catch(error => {
+      return Promise.reject(error)
+    })
   },
-  async signin ({commit, state, getters}, params) {
-    const { data } = await this.$axios.post('/api/user/signin', params)
-    return data
+  signin ({commit, state, getters}, params) {
+    return this.$axios.post('/api/user/signin', params)
+    .then(response => {
+      return Promise.resolve(response)
+    })
+    .catch(error => {
+      return Promise.reject(error)
+    })
   }
 }
 

@@ -44,8 +44,8 @@
         tagName: '',
       }
     },
-    mounted () {
-      this.$store.dispatch('tag/getAllTags')
+    fetch({ store, params }) {
+      return store.dispatch('tag/getAllTags')
     },
     methods: {
       handleClick(row) {
@@ -53,28 +53,22 @@
       },
       addTag () {
         this.$store.dispatch('tag/addTag', {name: this.tagName})
-          .then((data) => {
+          .then((response) => {
             this.$message({
-              message: data.data.message,
+              message: response.data.message,
               type: 'success'
             })
             this.tagName = ''
             this.dialogVisible = false
           })
-          .catch((err) => {
-            console.log(err)
-          })
       },
       deleteTag(row) {
         this.$store.dispatch('tag/deleteTag', {id: row.id})
-          .then((data) => {
+          .then((response) => {
             this.$message({
-              message: data.data.message,
+              message: response.data.message,
               type: 'success'
             })
-          })
-          .catch((err) => {
-            console.log(err)
           })
       }
     }

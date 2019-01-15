@@ -44,8 +44,8 @@
         categoryName: '',
       }
     },
-    mounted () {
-      this.$store.dispatch('category/getAllCategories')
+    fetch({ store, params }) {
+      return store.dispatch('category/getAllCategories')
     },
     methods: {
       handleClick(row) {
@@ -53,28 +53,22 @@
       },
       addCategory () {
         this.$store.dispatch('category/addCategory', {name: this.categoryName})
-          .then((data) => {
+          .then((response) => {
             this.$message({
-              message: data.data.message,
+              message: response.data.message,
               type: 'success'
             })
             this.categoryName = ''
             this.dialogVisible = false
           })
-          .catch((err) => {
-            console.log(err)
-          })
       },
       deleteCategory(row) {
         this.$store.dispatch('category/deleteCategory', {id: row.id})
-          .then((data) => {
+          .then((response) => {
             this.$message({
-              message: data.data.message,
+              message: response.data.message,
               type: 'success'
             })
-          })
-          .catch((err) => {
-            console.log(err)
           })
       }
     }

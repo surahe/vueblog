@@ -9,6 +9,7 @@ const mutations = {
       state.categories = data.result
     }
   },
+  // admin client
   ADD_CATEGORY (state, data) {
     if (data.errorCode === 0) {
       state.categories.push({
@@ -18,6 +19,7 @@ const mutations = {
       })
     }
   },
+  // admin client
   DELETE_CATEGORY (state, data) {
     if (data.data.errorCode === 0) {
       state.categories.splice(state.categories.findIndex(item => item.id === data.params.id), 1)
@@ -26,23 +28,40 @@ const mutations = {
 }
 
 const actions = {
-  async addCategory ({commit, state, getters}, params) {
-    const data = await this.$axios.post('/api/category/create', params)
-    commit('ADD_CATEGORY', data.data)
-    return data
+  getAllCategories ({commit, state, getters}, params) {
+    return this.$axios.get('/api/category/findAll')
+      .then(response => {
+        commit('SET_CATEGORY', response.data)
+        return Promise.resolve(response)
+      })
+      .catch(error => {
+        return Promise.reject(error)
+      })
   },
-  async getAllCategories ({commit, state, getters}, params) {
-    const data = await this.$axios.get('/api/category/findAll')
-    commit('SET_CATEGORY', data.data)
-    return data
+  // admin client
+  addCategory ({commit, state, getters}, params) {
+    return this.$axios.post('/api/category/create', params)
+      .then(response => {
+        commit('ADD_CATEGORY', response.data)
+        return Promise.resolve(response)
+      })
+      .catch(error => {
+        return Promise.reject(error)
+      })
   },
-  async deleteCategory ({commit, state, getters}, params) {
-    const data = await this.$axios.post('/api/category/destroy', params)
-    commit('DELETE_CATEGORY', {
-      data: data.data,
-      params
-    })
-    return data
+  // admin client
+  deleteCategory ({commit, state, getters}, params) {
+    return this.$axios.post('/api/category/destroy', params)
+      .then(response => {
+        commit('DELETE_CATEGORY', {
+          data: response.data,
+          params
+        })
+        return Promise.resolve(response)
+      })
+      .catch(error => {
+        return Promise.reject(error)
+      })
   }
 }
 

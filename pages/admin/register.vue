@@ -115,14 +115,17 @@ export default {
             email: self.form.email,
             nickname: self.form.nickname,
             code: self.form.code
-          }).then((data) => {
-            if (data && data.errorCode === 0) {
-              window.location.href = '/admin/login'
+          })
+          .then((response) => {
+            if (response.data) {
+              if (response.data.errorCode === 0) {
+                window.location.href = '/admin/login'
+              } else {
+                alert(response.data.message)
+              }
             } else {
-              alert(data.message)
+              alert('注册失败')
             }
-          }).catch(err => {
-            console.log(err)
           })
         }
       })
@@ -148,23 +151,26 @@ export default {
         this.$store.dispatch('user/verify', {
           username: encodeURIComponent(self.form.username),
           email: self.form.email
-        }).then((data) => {
-          if (data && data.errorCode === 0) {
-            self.statusMsg = `验证码已发送，剩余${countDown--}秒`
-            self.timerId = setInterval(() => {
+        })
+        .then((response) => {
+          if (response.data) {
+            if (response.data.errorCode === 0) {
               self.statusMsg = `验证码已发送，剩余${countDown--}秒`
-              if (countDown < 0) {
-                clearInterval(self.timerId)
-                self.statusMsg = ''
-                self.timerId = null
-                countDown = 60
-              }
-            }, 1000);
+              self.timerId = setInterval(() => {
+                self.statusMsg = `验证码已发送，剩余${countDown--}秒`
+                if (countDown < 0) {
+                  clearInterval(self.timerId)
+                  self.statusMsg = ''
+                  self.timerId = null
+                  countDown = 60
+                }
+              }, 1000)
+            } else {
+              self.statusMsg = response.data.message
+            }
           } else {
-            self.statusMsg = data.message
+            self.statusMsg = '验证码获取失败'
           }
-        }).catch(err => {
-          console.log(err)
         })
       }
     }

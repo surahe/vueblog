@@ -2,7 +2,7 @@
   <section class="login-dialog">
     <h2 class="title">登录</h2>
     <el-input v-model="username" class="username-input" placeholder="用户名" />
-    <el-input v-model="password" class="password-input" placeholder="密码" />
+    <el-input v-model="password" class="password-input" type="password" placeholder="密码" />
     <el-button class="login-btn" type="primary" @click="login">登录</el-button>
   </section>
 </template>
@@ -21,11 +21,9 @@ export default {
         username: this.username,
         password: this.password
       })
-      .then(({status, data}) => {
-        console.log(data)
-      })
-      .catch((err) => {
-        console.log(err)
+      .then((response) => {
+        alert('登录成功')
+        console.log(response)
       })
     }
   },
