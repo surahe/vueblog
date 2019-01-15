@@ -27,7 +27,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~assets/css/main.scss'
+    { src: '~assets/scss/main.scss', lang: 'sass' }
   ],
 
   /*
@@ -35,7 +35,7 @@ module.exports = {
   */
   plugins: [
     '~/plugins/components.js',
-    {src: '~/plugins/element.js', ssr: false },
+    {src: '~/plugins/element.js', ssr: true },
     '~/plugins/axios.js'
   ],
 
@@ -88,6 +88,10 @@ module.exports = {
           styleLibraryName: 'theme-chalk'
         }]
       ]
+    },
+    styleResources: {
+      scss: './assets/scss/init.scss',
+      options: {}
     }
   }
 }

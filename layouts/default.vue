@@ -102,8 +102,6 @@
 </script>
 
 <style lang="scss">
-@import '../assets/css/normalize.css';
-@import '~/assets/css/variable.scss';
 
 body, html, #__nuxt, #__layout {
   height: 100%;
