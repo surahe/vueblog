@@ -4,6 +4,7 @@
     <header-view/>
     <!-- body -->
     <div class="container">
+      <ClickBubble/>
       <nav-view/>
       <div class="main-content">
         <nuxt />
@@ -20,10 +21,12 @@ import HeaderView from './header'
 import FooterView from './footer'
 import NavView from './nav'
 import AsideView from './aside/main'
+import ClickBubble from '~/components/widget/click-bubble/list'
 
 export default {
   name: 'PcMain',
   components: {
+    ClickBubble,
     HeaderView, FooterView, NavView, AsideView // 布局
   }
 }

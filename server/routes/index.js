@@ -14,15 +14,15 @@ router
 	.post('/user/signin', user.signin)
 
 router
-	.post('/tag/createTag',checkToken, tag.createTag)
+	.post('/tag/createTag', checkToken, tag.createTag)
 	.get('/tag/findAllTags', tag.findAllTag)
 	.get('/tag/findTag', tag.findTag)
-	.post('/tag/destroyTag',checkToken, tag.destroyTag)
+	.post('/tag/destroyTag', checkToken, tag.destroyTag)
 
 router
-	.post('/category/create', category.create)
+	.post('/category/create', checkToken, category.create)
 	.get('/category/findAll', category.findAll)
 	.get('/category/find', category.find)
-	.post('/category/destroy', category.destroy)
+	.post('/category/destroy', checkToken, category.destroy)
 
 module.exports = router
