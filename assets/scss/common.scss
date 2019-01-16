@@ -1,3 +1,21 @@
+/*
+ *
+ * normalize
+ *
+ */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, PingFang SC,
+    Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC, WenQuanYi Micro Hei,
+    sans-serif;
+  font-size: 12px;
+  color: $dark;
+  background: #f6f6f6;
+  word-break: break-word;
+  -webkit-tap-highlight-color: rgba(26, 26, 26, 0);
+  text-rendering: optimizeLegibility;
+}
+
 a {
   text-decoration: none;
   cursor: pointer;
@@ -17,6 +35,66 @@ button {
   outline: none;
   cursor: pointer;
 }
+
+/*
+ *
+ * scrollbar
+ *
+ */
+::-webkit-scrollbar {
+  width: .5rem;
+  height: .5rem;
+  background: hsla(0, 0%, 100%, 0.6);
+}
+::-webkit-scrollbar-track {
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 0;
+  background-color: rgba(95,95,95,.4);
+  transition: background-color .15s;
+
+  &:hover {
+    background-color: rgba(95,95,95, .7);
+  }
+}
+
+
+/*
+ *
+ * iconfont
+ *
+ */
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+/*
+ *
+ * z-index
+ *
+ */
+.z-covers {
+  z-index: 1;
+}
+
+.z-tooltip{
+  z-index: 2;
+}
+
+.z-modal {
+  z-index: 3;
+}
+
+/*
+ *
+ * 1px-border
+ *
+ */
 
 @media (-webkit-min-device-pixel-radio: 1.5), (min-device-pixel-radio: 1.5) {
   .border-1px {
