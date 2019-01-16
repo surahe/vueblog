@@ -9,8 +9,16 @@
       <el-table-column label="操作" width="200">
         <template slot-scope="scope">
           <div class="operation-col">
-            <icon-base :icon-name="'修改'" @click="handleClick(scope.row)"><icon-pencil/></icon-base>
-            <icon-base :icon-name="'删除'" @click="deleteCategory(scope.row)"><icon-bin/></icon-base>
+            <i @click="handleClick(scope.row)">
+              <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-edit"/>
+              </svg>
+            </i>
+            <i @click="deleteCategory(scope.row)">
+              <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-trash"/>
+              </svg>
+            </i>
           </div>
         </template>
       </el-table-column>
@@ -30,15 +38,8 @@
 </template>
 
 <script>
-  import IconBin from '~/assets/svg/bin.vue'
-  import IconPencil from '~/assets/svg/pencil.vue'
-
   export default {
     layout: 'admin',
-    components: {
-      IconPencil,
-      IconBin
-    },
     data () {
       return {
         dialogVisible: false,
@@ -78,6 +79,7 @@
 
 <style lang="scss">
   .operation-col {
+    font-size: 16px;
     svg {
       cursor: pointer;
     }

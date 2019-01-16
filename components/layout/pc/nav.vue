@@ -48,7 +48,7 @@ export default {
         {
           path: "/about",
           routerName: "about",
-          icon: "me1",
+          icon: "me",
           name: "关于我"
         }
       ]

@@ -34,7 +34,6 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    {src:'~/plugins/components.js'},
     {src: '~/plugins/element.js'},
     {src: '~/plugins/axios.js'},
     {src: '~/static/iconfont/iconfont.js', ssr: false},

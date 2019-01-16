@@ -5,7 +5,6 @@ const tools = require('../utils/tools')
  
 module.exports = function(req, res, next) {　　 // 获取请求头文件中的token信息
   let token = req.headers['authorization']
-  console.log(token)
   if (token) {
       // 确认token是否正确
       jwt.verify(token, config.jwt.secret, function (err, decoded) {
