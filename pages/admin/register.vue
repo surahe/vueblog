@@ -33,6 +33,7 @@
 let countDown = 60
 
 export default {
+  layout: 'admin',
   data() {
     var validatePass = (rule, value, callback) => {
       if (value === '') {

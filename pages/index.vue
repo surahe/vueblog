@@ -1,5 +1,5 @@
 <template>
-  <section class="content">
+  <div class="index">
     <div>
       <logo/>
       <h1 class="title">
@@ -19,7 +19,7 @@
           class="button--grey">GitHub</a>
       </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -33,14 +33,6 @@ export default {
 </script>
 
 <style>
-
-.content {
-  /* min-height: 100vh; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
 
 .title {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,

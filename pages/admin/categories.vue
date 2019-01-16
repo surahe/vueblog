@@ -34,6 +34,7 @@
   import IconPencil from '~/assets/svg/pencil.vue'
 
   export default {
+    layout: 'admin',
     components: {
       IconPencil,
       IconBin
