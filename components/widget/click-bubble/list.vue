@@ -1,11 +1,16 @@
 <template>
   <ul class="click-bubble">
-    <Item v-for="(item, index) in list" :options="item" :key="index"/>
+    <Item
+      v-for="(item, index) in list"
+      :zindex="index + 1"
+      :options="item"
+      :key="item.id"
+      @end="animationEnd"
+    />
   </ul>
 </template>
 
 <script>
-// https://github.com/djzhao627/JSClickBubble/blob/master/JSClickBubble.user.js
 import Item from "./item";
 
 export default {
@@ -13,23 +18,38 @@ export default {
   components: { Item },
   data() {
     return {
+      id: 0,
       list: [],
-      content: [1, 2, 3, 4, 5]
-    };
+      contentIndex: -1,
+      content: ['❤']
+    }
   },
   mounted() {
-    window.addEventListener("click", this.eventHandle);
+    window.addEventListener("click", this.eventHandle)
   },
   beforeDestroy() {
-    window.removeEventListener("click", this.eventHandle);
+    window.removeEventListener("click", this.eventHandle)
   },
   methods: {
     eventHandle(event) {
+      this.contentIndex++
+      if (this.contentIndex >= this.content.length) {
+        this.contentIndex = 0
+      }
       this.list.push({
+        id: ++this.id,
         x: event.pageX,
         y: event.pageY,
-        text: this.content[0]
+        text: this.content[this.contentIndex]
       });
+    },
+    animationEnd(id) {
+      const targetIndex = this.list.findIndex((item) => {
+        return item.id === id
+      })
+      if (targetIndex > -1) {
+        this.list.splice(targetIndex, 1)
+      }
     }
   }
 };

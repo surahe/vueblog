@@ -90,8 +90,7 @@ module.exports = {
       ]
     },
     styleResources: {
-      scss: './assets/scss/init.scss',
-      options: {}
+      scss: './assets/scss/init.scss'
     }
   }
 }
