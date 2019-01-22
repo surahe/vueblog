@@ -1,5 +1,18 @@
 import Vue from 'vue'
-import {Button, Table, TableColumn, Dialog, Input, Message, Form, FormItem} from 'element-ui' //引入分页组件
+import {
+  Button,
+  Table,
+  TableColumn,
+  Dialog,
+  Input,
+  Message,
+  Form,
+  FormItem,
+  Menu,
+  Submenu,
+  MenuItem,
+  scrollbar,
+} from 'element-ui' //引入分页组件
 
 Vue.use(Button)
 Vue.use(Table)
@@ -8,5 +21,9 @@ Vue.use(Input)
 Vue.use(TableColumn)
 Vue.use(Form)
 Vue.use(FormItem)
+Vue.use(Menu)
+Vue.use(Submenu)
+Vue.use(MenuItem)
+Vue.use(scrollbar)
 
 Vue.prototype.$message = Message

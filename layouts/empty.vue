@@ -1,11 +1,9 @@
 <template>
-  <div>
-    aaa
-  </div>
+  <nuxt/>
 </template>
 
 <script>
 export default {
-  layout: 'admin'
+  name: 'EmptyApp'
 }
 </script>

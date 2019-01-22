@@ -1,7 +1,11 @@
 <template>
   <div id="app-main">
     <!-- header -->
-    <header-view/>
+    <div class="header-wrapper">
+      <header-view/>
+    </div>
+    <!-- sidebar -->
+    <sidebar-view/>
     <!-- body -->
     <div class="container">
       <nuxt />
@@ -14,11 +18,12 @@
 <script>
 import HeaderView from '~/components/layout/pc/header'
 import FooterView from '~/components/layout/pc/footer'
+import SidebarView from '~/components/layout/admin/sidebar'
 
 export default {
   name: 'AdminApp',
   components: {
-    HeaderView, FooterView
+    HeaderView, FooterView,SidebarView
   }
 }
 </script>
@@ -30,8 +35,11 @@ export default {
     min-height: 100vh;
     .container {
       flex: 1;
-      width: 1000px;
-      margin: 0 auto;
+      margin-left: $admin-sidebar-width;
+      padding: 20px;
+    }
+    .header-wrapper {
+      margin-left: $admin-sidebar-width;
     }
   }
 </style>
