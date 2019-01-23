@@ -49,9 +49,7 @@
     },
     fetch({ store, params }) {
       return store.dispatch('tag/getAllTags')
-        .catch(err => {
-          
-        })
+        .catch(err => {})
     },
     methods: {
       handleClick(row) {

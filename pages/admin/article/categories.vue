@@ -49,6 +49,7 @@
     },
     fetch({ store, params }) {
       return store.dispatch('category/getAllCategories')
+        .catch(err => {})
     },
     methods: {
       handleClick(row) {
