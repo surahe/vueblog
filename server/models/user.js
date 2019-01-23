@@ -1,7 +1,5 @@
 'use strict';
 
-const {formatTime} = require('../utils/tools')
-
 module.exports = (sequelize, DataTypes) => {
   let User = sequelize.define('user', {
     role: {
@@ -32,18 +30,6 @@ module.exports = (sequelize, DataTypes) => {
     avatar: {
       type: DataTypes.STRING,
       allowNull: true
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      get() {
-        return formatTime(this.getDataValue('createdAt'), 'YYYY-MM-DD HH:mm:ss')
-      }
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      get() {
-        return formatTime(this.getDataValue('updatedAt'), 'YYYY-MM-DD HH:mm:ss')
-      }
     }
   })
   return User
