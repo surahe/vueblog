@@ -34,6 +34,14 @@ let countDown = 60
 
 export default {
   layout: 'admin',
+    head () {
+      return {
+        title: '注册',
+        meta: [
+          { noCache: true }
+        ]
+      }
+    },
   data() {
     var validatePass = (rule, value, callback) => {
       if (value === '') {

@@ -41,6 +41,14 @@
   import {formatTime} from '~/utils/tools'
   export default {
     layout: 'admin',
+    head () {
+      return {
+        title: '标签管理',
+        meta: [
+          { noCache: false }
+        ]
+      }
+    },
     data () {
       return {
         dialogVisible: false,

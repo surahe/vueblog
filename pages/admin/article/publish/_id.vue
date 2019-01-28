@@ -6,6 +6,14 @@
 
 <script>
 export default {
-  layout: 'admin'
+  layout: 'admin',
+    head () {
+      return {
+        title: '发布文章',
+        meta: [
+          { noCache: false }
+        ]
+      }
+    },
 }
 </script>
