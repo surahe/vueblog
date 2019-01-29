@@ -13,6 +13,16 @@ const store = () => new Vuex.Store({
   },
   mutations: {
   },
+  actions : {
+    nuxtServerInit (store, { req }) {
+      let initFetchData = [
+        store.dispatch('tag/getAllTags'),
+        store.dispatch('category/getAllCategories')
+      ]
+
+      return Promise.all(initFetchData)
+    }
+  },
   modules: {
     user,
     tag,

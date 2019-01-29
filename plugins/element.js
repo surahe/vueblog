@@ -12,6 +12,8 @@ import {
   Submenu,
   MenuItem,
   scrollbar,
+  Select,
+  Option,
 } from 'element-ui' //引入分页组件
 
 Vue.use(Button)
@@ -25,5 +27,7 @@ Vue.use(Menu)
 Vue.use(Submenu)
 Vue.use(MenuItem)
 Vue.use(scrollbar)
+Vue.use(Select)
+Vue.use(Option)
 
 Vue.prototype.$message = Message
