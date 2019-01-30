@@ -27,6 +27,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
+    { src: "mavon-editor/dist/css/index.css" },
     { src: '~assets/scss/main.scss', lang: 'sass' }
   ],
 
@@ -37,6 +38,7 @@ module.exports = {
     {src: '~/plugins/element.js'},
     {src: '~/plugins/axios.js'},
     {src: '~/static/iconfont/iconfont.js', ssr: false},
+    {src: '~/plugins/vue-markdown.js', ssr: false},
   ],
 
   /*
@@ -63,6 +65,31 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
+    maxChunkSize: 360000, // 单个包最大尺寸
+    extractCSS: true, // 单独提取 css
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          expansions: {
+            name: 'expansions',
+            test(module) {
+              return /element|mavon/.test(module.context)
+            },
+            chunks: 'initial',
+            priority: 10,
+          },
+          vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            priority: -10
+          },
+          default: {
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true
+          }
+        }
+      }
+    },
     extend(config, ctx) {
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {

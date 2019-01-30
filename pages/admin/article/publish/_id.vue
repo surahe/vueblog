@@ -21,19 +21,25 @@
       </el-form-item>
       <el-form-item label="文章标签">
         <button
-          v-for="item in $store.state.tag.tags"
+          v-for="(item, index) in tagList"
           :key="item.id"
+          :class="{active: item.selected}"
+          type="button"
           class="tag-item"
-          @click="switchTagStatus(item)"
+          @click="switchTagStatus(item, index)"
         >
           {{ item.name }}
         </button>
+      </el-form-item>
+      <el-form-item label="文章内容">
+        <no-ssr><mavon-editor v-model="form.content"/></no-ssr>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
+
 export default {
   layout: "admin",
   head() {
@@ -52,16 +58,22 @@ export default {
         category: {
           id: '',
           name: ''
-        }
-      }
+        },
+        content: ''
+      },
+      tagList: []
     }
   },
-  computed: {
-    
+  created () {
+    this.tagList = this.$store.state.tag.tags.map((item) => {
+      return Object.assign(item, {selected: false})
+    })
   },
   methods: {
-    switchTagStatus (tag) {
-      
+    switchTagStatus (item, index) {
+      let selected = !item.selected
+      this.tagList[index].selected = selected
+      this.form.tags = this.tagList.filter(t => t.selected).map(t => t.id)
     }
   }
 }

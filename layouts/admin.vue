@@ -18,7 +18,7 @@
 <script>
 import HeaderView from '~/components/layout/pc/header'
 import FooterView from '~/components/layout/pc/footer'
-import SidebarView from '~/components/layout/admin/sidebar'
+import SidebarView from '~/components/admin/sidebar'
 
 export default {
   name: 'AdminApp',

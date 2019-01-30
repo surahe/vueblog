@@ -26,6 +26,35 @@
 - [ ] redis缓存
 - [ ] 单元测试
 
+## package.json分类
+### 通用
+axios
+cross-env
+dayjs
+nuxt
+
+### 页面
+
+
+### 管理后台
+js-cookie
+element-ui
+mavon-editor
+
+### 后端
+body-parser
+connect-redis
+cookie-parser
+express
+express-session
+ioredis
+jsonwebtoken
+log4js
+mysql2
+nodemailer
+sequelize
+superstruct
+
 ## 运维
 - [ ] CDN
 
